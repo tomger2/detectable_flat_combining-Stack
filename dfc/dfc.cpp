@@ -327,6 +327,7 @@ int reduce(persistent_ptr<detectable_fc> dfc) {
 	int top_push = -1;
 	int top_pop = -1;
 
+	prepare_ops(dfc, top_push, top_pop);
 
 	// IMPORTANT! make sure that there is no way that a combined op will change valid after it was collected.
 	// if there is a way, we must change below the collected op and not the other struct
