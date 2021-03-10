@@ -489,7 +489,7 @@ size_t combine(persistent_ptr<detectable_fc> dfc, size_t opEpoch, pmem::obj::poo
     prepare_ops(dfc, top_push, top_pop);
 	persistent_ptr<node> head = dfc->top[(dfc->cEpoch/2)%2];
     perform_pushes(dfc, top_push, head);
-    perform_pops(dfc, top_index, head);
+    perform_pops(dfc, top_pop, head);
 	dfc->top[(dfc->cEpoch/2 + 1) % 2] = head;
 	for (int i=0; i<NN; i++) { //maybe persist on line. check on optane
 		short validOp = collectedValid[i];
