@@ -65,6 +65,7 @@ using namespace std::literals::chrono_literals;
 #define VALID_ANN(dfc, i)   dfc->announce_arr[i]->announces[dfc->announce_arr[i]->valid % 10]
 #define ANN(dfc, i, valid)   dfc->announce_arr[i]->announces[valid % 10]
 
+typedef unsigned int size_t32;
 
 int NN = N;  // number of processes running now
 const int num_words = MAX_POOL_SIZE / 64 + 1;
@@ -152,13 +153,13 @@ short collectedValid[N];
 
 // struct alignas(32) announce { 
 struct announce { 
-    p<size_t> val;
-    p<size_t> epoch;
+    p<size_t32> val;
+    p<size_t32> epoch;
 	p<char> name;
-    p<size_t> param; 
+    p<size_t32> param;
 } ;
 
-struct alignas(64) transactional_announce { 
+struct alignas(32) transactional_announce {
     persistent_ptr<announce> announces [2];
 	p<short> valid;
 } ;
@@ -290,37 +291,43 @@ size_t try_to_return(persistent_ptr<detectable_fc> dfc, size_t & opEpoch, size_t
 	}
 }
 
+
+void prepare_ops(persistent_ptr<detectable_fc> dfc, int & top_push, int & top_pop) {
+    for (size_t i = 0; i < NN; i++) {
+        short validOp = dfc->announce_arr[i]->valid;
+        size_t opVal = ANN(dfc, i, validOp)->val;
+        if ((validOp / 10 == 1) && (opVal == NONE)){
+            // size_t opEpoch = ANN(dfc, i, validOp)->epoch;
+            // size_t opVal = ANN(dfc, i, validOp)->val;
+            // if (opEpoch == dfc->cEpoch || opVal == NONE) {
+
+            // if (opVal == NONE) {
+            ANN(dfc, i, validOp)->epoch = dfc->cEpoch;
+            // PWB(&ANN(dfc, i, validOp)->epoch);  // needed if there is a chance that epoch will be persisted but val not
+            char opName = ANN(dfc, i, validOp)->name;
+            if (opName == PUSH_OP) {
+                top_push ++;
+                pushList[top_push] = i;
+                collectedValid[i] = validOp;
+            }
+            else if (opName == POP_OP) {
+                top_pop ++;
+                popList[top_pop] = i;
+                collectedValid[i] = validOp;
+            }
+        }
+        else{
+            collectedValid[i] = NONE;
+        }
+    }
+}
+
+
 int reduce(persistent_ptr<detectable_fc> dfc) {
 	int top_push = -1;
 	int top_pop = -1;
 
-	for (size_t i = 0; i < NN; i++) {
-		short validOp = dfc->announce_arr[i]->valid;
-		size_t opVal = ANN(dfc, i, validOp)->val;
-		if ((validOp / 10 == 1) && (opVal == NONE)){
-			// size_t opEpoch = ANN(dfc, i, validOp)->epoch;
-			// size_t opVal = ANN(dfc, i, validOp)->val;
-			// if (opEpoch == dfc->cEpoch || opVal == NONE) {
-			
-			// if (opVal == NONE) {
-			ANN(dfc, i, validOp)->epoch = dfc->cEpoch;
-			// PWB(&ANN(dfc, i, validOp)->epoch);  // needed if there is a chance that epoch will be persisted but val not
-			char opName = ANN(dfc, i, validOp)->name;
-			if (opName == PUSH_OP) {
-				top_push ++;
-				pushList[top_push] = i;
-				collectedValid[i] = validOp;
-			}
-			else if (opName == POP_OP) {
-				top_pop ++;
-				popList[top_pop] = i;
-				collectedValid[i] = validOp;
-			}
-		}
-		else{
-			collectedValid[i] = NONE;
-		}
-	}
+
 	// IMPORTANT! make sure that there is no way that a combined op will change valid after it was collected.
 	// if there is a way, we must change below the collected op and not the other struct
 	while((top_push != -1) || (top_pop != -1)) {
@@ -394,6 +401,110 @@ void update_free_nodes(persistent_ptr<detectable_fc> dfc, size_t opEpoch) {
 	}
 }
 
+int find_free_node(){
+    uint64_t pos = -1;
+
+    uint64_t n = free_nodes_log_h1;
+    uint64_t temp_pos_h1 = log2(n & -n);
+    if (temp_pos_h1 >= 64) {
+        std::cerr << "No free nodes / Pool size must be at most 4096 nodes." << std::endl;
+        exit(-1);
+    }
+    n = free_nodes_log[temp_pos_h1];
+    uint64_t temp_pos = log2(n & -n);
+    pos = temp_pos + temp_pos_h1*64;
+    if (temp_pos >= 64 or pos >= MAX_POOL_SIZE) {
+        std::cerr << "No free nodes." << std::endl;
+        exit(-1);
+    }
+
+    return pos;
+}
+
+
+
+void update_pool_after_alloc(int pos){
+    uint64_t n = free_nodes_log[pos/64];
+    uint64_t p = pos % 64;
+    uint64_t b = 0UL;  // set 0 (not free)
+    uint64_t mask = 1UL << p;
+
+    free_nodes_log[pos/64] = (n & ~mask) | ((b << p) & mask);
+    n = free_nodes_log[pos/64];
+    uint64_t firstSetBit = log2(n & -n);
+    if (firstSetBit >= 64) { // no free bits in this word
+        n = free_nodes_log_h1;
+        p = pos / 64;
+        b = 0UL;
+        mask = 1UL << p;
+        free_nodes_log_h1 = (n & ~mask) | ((b << p) & mask);
+    }
+}
+
+void update_pool_after_dealloc(uint64_t i) {
+    uint64_t n = free_nodes_log[i/64];
+
+    uint64_t firstSetBit = log2(n & -n);
+    if (firstSetBit >= 64) { // no free bits in this word
+        n = free_nodes_log_h1;
+        uint64_t p = i / 64;
+        uint64_t b = 1UL;
+        uint64_t mask = 1UL << p;
+        free_nodes_log_h1 = (n & ~mask) | ((b << p) & mask);
+    }
+
+    n = free_nodes_log[i/64];
+    uint64_t p = i % 64;
+    uint64_t b = 1UL;  // set 1 (free)
+    uint64_t mask = 1UL << p;
+
+    free_nodes_log[i/64] = (n & ~mask) | ((b << p) & mask);
+
+}
+
+
+void perform_pushes(persistent_ptr<detectable_fc> dfc, int top_index, persistent_ptr<node> & head){
+    top_index = top_index - 1;
+    do {
+        size_t cId = pushList[top_index];
+
+        int pos = find_free_node();
+
+        auto newNode = dfc->nodes_pool[pos];
+        short validOp = collectedValid[cId];
+        size_t newParam = ANN(dfc, cId, validOp)->param;
+        newNode->param = newParam;
+        newNode->next = head;
+
+        update_pool_after_alloc(pos);
+
+        ANN(dfc, cId, validOp)->val = ACK;
+        // pwbCounter3 ++;
+        PWB(&newNode);
+        head = newNode;
+        top_index -- ;
+    } while (top_index != -1);
+}
+
+void perform_pops(persistent_ptr<detectable_fc> dfc, int top_index, persistent_ptr<node> & head){
+    top_index = -1 * top_index - 1;
+    do {
+        size_t cId = popList[top_index];
+        if (head == NULL) {
+            ANN(dfc, cId, collectedValid[cId])->val = EMPTY;
+            // exit(-1);
+        }
+        else {
+            size_t headParam = head->param;
+            ANN(dfc, cId, collectedValid[cId])->val = headParam;
+
+            update_pool_after_dealloc(head->index);
+
+            head = head->next;
+        }
+        top_index -- ;
+    } while (top_index != -1);
+}
 
 size_t combine(persistent_ptr<detectable_fc> dfc, size_t opEpoch, pmem::obj::pool<root> pop, size_t pid) {
 	l_combining_counter ++;
@@ -401,89 +512,10 @@ size_t combine(persistent_ptr<detectable_fc> dfc, size_t opEpoch, pmem::obj::poo
 	persistent_ptr<node> head = dfc->top[(dfc->cEpoch/2)%2];
 	if (top_index != 0) {
 		if (top_index > 0) { // push
-			top_index = top_index - 1;
-			do {
-				size_t cId = pushList[top_index];
-
-				uint64_t pos = -1;
-
-				uint64_t n = free_nodes_log_h1;
-				uint64_t temp_pos_h1 = log2(n & -n); 
-				if (temp_pos_h1 >= 64) {
-					std::cerr << "No free nodes / Pool size must be at most 4096 nodes." << std::endl;
-					exit(-1);
-				}
-				n = free_nodes_log[temp_pos_h1];
-				uint64_t temp_pos = log2(n & -n); 
-				pos = temp_pos + temp_pos_h1*64;
-				if (temp_pos >= 64 or pos >= MAX_POOL_SIZE) {
-					std::cerr << "No free nodes." << std::endl;
-					exit(-1);
-				}
-
-				auto newNode = dfc->nodes_pool[pos];
-				short validOp = collectedValid[cId];
-				size_t newParam = ANN(dfc, cId, validOp)->param;
-				newNode->param = newParam;
-				newNode->next = head;
-				
-				n = free_nodes_log[pos/64];
-				uint64_t p = pos % 64;
-				uint64_t b = 0UL;  // set 0 (not free)
-				uint64_t mask = 1UL << p; 
-
-				free_nodes_log[pos/64] = (n & ~mask) | ((b << p) & mask);
-				n = free_nodes_log[pos/64];
-				uint64_t firstSetBit = log2(n & -n); 
-				if (firstSetBit >= 64) { // no free bits in this word
-					n = free_nodes_log_h1;
-					p = pos / 64;
-					b = 0UL;
-					mask = 1UL << p; 
-					free_nodes_log_h1 = (n & ~mask) | ((b << p) & mask);
-				}
-
-				ANN(dfc, cId, validOp)->val = ACK;
-				// pwbCounter3 ++;
-				PWB(&newNode);
-				head = newNode;
-				top_index -- ;
-			} while (top_index != -1);
+			perform_pushes(dfc, top_index, head);
 		}
 		else { // pop. should convert to positive index
-			top_index = -1 * top_index - 1;
-			do {
-				size_t cId = popList[top_index];
-				if (head == NULL) {
-					ANN(dfc, cId, collectedValid[cId])->val = EMPTY;
-					// exit(-1);
-				}
-				else {
-                    size_t headParam = head->param;
-					ANN(dfc, cId, collectedValid[cId])->val = headParam;
-
-					uint64_t i = head->index;
-					uint64_t n = free_nodes_log[i/64];
-					uint64_t firstSetBit = log2(n & -n); 
-					if (firstSetBit >= 64) { // no free bits in this word
-						n = free_nodes_log_h1;
-						uint64_t p = i / 64;
-						uint64_t b = 1UL;
-						uint64_t mask = 1UL << p; 
-						free_nodes_log_h1 = (n & ~mask) | ((b << p) & mask);
-					}
-
-					n = free_nodes_log[i/64];
-					uint64_t p = i % 64;
-					uint64_t b = 1UL;  // set 1 (free)
-					uint64_t mask = 1UL << p; 
-
-					free_nodes_log[i/64] = (n & ~mask) | ((b << p) & mask);
-					
-					head = head->next;
-				}
-				top_index -- ;
-			} while (top_index != -1);
+            perform_pops(dfc, top_index, head);
 		}		
 	}
 	dfc->top[(dfc->cEpoch/2 + 1) % 2] = head;
@@ -560,7 +592,7 @@ size_t recover(persistent_ptr<detectable_fc> dfc, pmem::obj::pool<root> pop, siz
 			if (validOp / 10 == 0 and opEpoch != NONE) { // if not valid and announced properly - make it valid, i.e. allow the combiner to collect
 				dfc->announce_arr[i]->valid = 10 + validOp;
 			}
-			if (opEpoch == dfc->cEpoch) { 
+			if (opEpoch == (size_t32)dfc->cEpoch) {
 				ANN(dfc, i, validOp)->val = NONE;
 			}
 		}
@@ -685,7 +717,7 @@ std::tuple<uint64_t, double, double, double, double, double> pushPopTest(int num
 		pop = pool<root>::create(pool_file_name, "layout", (size_t)PM_REGION_SIZE, S_IRUSR|S_IWUSR);
 		proot = pop.root();
 		transaction_allocations(proot, pop);
-		std::cout << "Finished allocating!" << std::endl;
+		//std::cout << "Finished allocating!" << std::endl;
 
 		// Fill the queue with an initial amount of nodes
 		size_t param = size_t(41);

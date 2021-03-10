@@ -1,0 +1,63 @@
+Performing C++ SOURCE FILE Test CMAKE_HAVE_LIBC_PTHREAD failed with the following output:
+Change Dir: /home/tomg/Desktop/detectable_flat_combining-Stack/dfc/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/gmake cmTC_e76c3/fast && gmake: Warning: File `Makefile' has modification time 37 s in the future
+/usr/bin/gmake -f CMakeFiles/cmTC_e76c3.dir/build.make CMakeFiles/cmTC_e76c3.dir/build
+gmake[1]: Entering directory `/home/tomg/Desktop/detectable_flat_combining-Stack/dfc/CMakeFiles/CMakeTmp'
+gmake[1]: Warning: File `CMakeFiles/cmTC_e76c3.dir/flags.make' has modification time 37 s in the future
+Building CXX object CMakeFiles/cmTC_e76c3.dir/src.cxx.o
+/opt/sw/gcc/9.1.0/bin/c++    -O2 -DPWB_IS_CLFLUSH -DCMAKE_HAVE_LIBC_PTHREAD   -o CMakeFiles/cmTC_e76c3.dir/src.cxx.o -c /home/tomg/Desktop/detectable_flat_combining-Stack/dfc/CMakeFiles/CMakeTmp/src.cxx
+Linking CXX executable cmTC_e76c3
+/opt/sw/cmake/3.15.3/bin/cmake -E cmake_link_script CMakeFiles/cmTC_e76c3.dir/link.txt --verbose=1
+/opt/sw/gcc/9.1.0/bin/c++  -O2 -DPWB_IS_CLFLUSH -DCMAKE_HAVE_LIBC_PTHREAD    -rdynamic CMakeFiles/cmTC_e76c3.dir/src.cxx.o  -o cmTC_e76c3 
+CMakeFiles/cmTC_e76c3.dir/src.cxx.o: In function `main':
+src.cxx:(.text.startup+0x13): undefined reference to `pthread_create'
+src.cxx:(.text.startup+0x1d): undefined reference to `pthread_detach'
+src.cxx:(.text.startup+0x29): undefined reference to `pthread_join'
+src.cxx:(.text.startup+0x34): undefined reference to `pthread_atfork'
+collect2: error: ld returned 1 exit status
+gmake[1]: *** [cmTC_e76c3] Error 1
+gmake[1]: Leaving directory `/home/tomg/Desktop/detectable_flat_combining-Stack/dfc/CMakeFiles/CMakeTmp'
+gmake: *** [cmTC_e76c3/fast] Error 2
+
+
+Source file was:
+#include <pthread.h>
+
+void* test_func(void* data)
+{
+  return data;
+}
+
+int main(void)
+{
+  pthread_t thread;
+  pthread_create(&thread, NULL, test_func, NULL);
+  pthread_detach(thread);
+  pthread_join(thread, NULL);
+  pthread_atfork(NULL, NULL, NULL);
+  pthread_exit(NULL);
+
+  return 0;
+}
+
+Determining if the function pthread_create exists in the pthreads failed with the following output:
+Change Dir: /home/tomg/Desktop/detectable_flat_combining-Stack/dfc/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/gmake cmTC_45f19/fast && gmake: Warning: File `Makefile' has modification time 37 s in the future
+/usr/bin/gmake -f CMakeFiles/cmTC_45f19.dir/build.make CMakeFiles/cmTC_45f19.dir/build
+gmake[1]: Entering directory `/home/tomg/Desktop/detectable_flat_combining-Stack/dfc/CMakeFiles/CMakeTmp'
+gmake[1]: Warning: File `CMakeFiles/cmTC_45f19.dir/flags.make' has modification time 37 s in the future
+Building CXX object CMakeFiles/cmTC_45f19.dir/CheckFunctionExists.cxx.o
+/opt/sw/gcc/9.1.0/bin/c++    -O2 -DPWB_IS_CLFLUSH -DCHECK_FUNCTION_EXISTS=pthread_create   -o CMakeFiles/cmTC_45f19.dir/CheckFunctionExists.cxx.o -c /home/tomg/Desktop/detectable_flat_combining-Stack/dfc/CMakeFiles/CheckLibraryExists/CheckFunctionExists.cxx
+Linking CXX executable cmTC_45f19
+/opt/sw/cmake/3.15.3/bin/cmake -E cmake_link_script CMakeFiles/cmTC_45f19.dir/link.txt --verbose=1
+/opt/sw/gcc/9.1.0/bin/c++  -O2 -DPWB_IS_CLFLUSH -DCHECK_FUNCTION_EXISTS=pthread_create    -rdynamic CMakeFiles/cmTC_45f19.dir/CheckFunctionExists.cxx.o  -o cmTC_45f19 -lpthreads 
+/usr/bin/ld: cannot find -lpthreads
+collect2: error: ld returned 1 exit status
+gmake[1]: *** [cmTC_45f19] Error 1
+gmake[1]: Leaving directory `/home/tomg/Desktop/detectable_flat_combining-Stack/dfc/CMakeFiles/CMakeTmp'
+gmake: *** [cmTC_45f19/fast] Error 2
+
+
+

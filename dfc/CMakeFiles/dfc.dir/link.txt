@@ -1,0 +1,1 @@
+/opt/sw/gcc/9.1.0/bin/c++  -O2 -DPWB_IS_CLFLUSH  -rdynamic CMakeFiles/dfc.dir/dfc.cpp.o  -o dfc  -L/opt/sw/pmdk/pmdk-1.8_install/lib -Wl,-rpath,/opt/sw/pmdk/pmdk-1.8_install/lib -lpmemobj -lpthread -lpmem 

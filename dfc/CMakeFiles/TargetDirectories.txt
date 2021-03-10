@@ -1,0 +1,3 @@
+/home/tomg/Desktop/detectable_flat_combining-Stack/dfc/CMakeFiles/rebuild_cache.dir
+/home/tomg/Desktop/detectable_flat_combining-Stack/dfc/CMakeFiles/dfc.dir
+/home/tomg/Desktop/detectable_flat_combining-Stack/dfc/CMakeFiles/edit_cache.dir

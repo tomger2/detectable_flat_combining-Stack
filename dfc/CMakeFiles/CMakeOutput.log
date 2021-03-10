@@ -1,0 +1,261 @@
+The system is: Linux - 3.10.0-327.22.2.el7.x86_64 - x86_64
+Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" succeeded.
+Compiler: /opt/sw/gcc/9.1.0/bin/c++ 
+Build flags: 
+Id flags:  
+
+The output was:
+0
+
+
+Compilation of the CXX compiler identification source "CMakeCXXCompilerId.cpp" produced "a.out"
+
+The CXX compiler identification is GNU, found in "/home/tomg/Desktop/detectable_flat_combining-Stack/dfc/CMakeFiles/3.15.3/CompilerIdCXX/a.out"
+
+Determining if the CXX compiler works passed with the following output:
+Change Dir: /home/tomg/Desktop/detectable_flat_combining-Stack/dfc/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/gmake cmTC_de66a/fast && gmake: Warning: File `Makefile' has modification time 37 s in the future
+/usr/bin/gmake -f CMakeFiles/cmTC_de66a.dir/build.make CMakeFiles/cmTC_de66a.dir/build
+gmake[1]: Entering directory `/home/tomg/Desktop/detectable_flat_combining-Stack/dfc/CMakeFiles/CMakeTmp'
+gmake[1]: Warning: File `CMakeFiles/cmTC_de66a.dir/flags.make' has modification time 37 s in the future
+Building CXX object CMakeFiles/cmTC_de66a.dir/testCXXCompiler.cxx.o
+/opt/sw/gcc/9.1.0/bin/c++     -o CMakeFiles/cmTC_de66a.dir/testCXXCompiler.cxx.o -c /home/tomg/Desktop/detectable_flat_combining-Stack/dfc/CMakeFiles/CMakeTmp/testCXXCompiler.cxx
+Linking CXX executable cmTC_de66a
+/opt/sw/cmake/3.15.3/bin/cmake -E cmake_link_script CMakeFiles/cmTC_de66a.dir/link.txt --verbose=1
+/opt/sw/gcc/9.1.0/bin/c++       -rdynamic CMakeFiles/cmTC_de66a.dir/testCXXCompiler.cxx.o  -o cmTC_de66a 
+gmake[1]: warning:  Clock skew detected.  Your build may be incomplete.
+gmake[1]: Leaving directory `/home/tomg/Desktop/detectable_flat_combining-Stack/dfc/CMakeFiles/CMakeTmp'
+gmake: warning:  Clock skew detected.  Your build may be incomplete.
+
+
+
+Detecting CXX compiler ABI info compiled with the following output:
+Change Dir: /home/tomg/Desktop/detectable_flat_combining-Stack/dfc/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/gmake cmTC_7d4f2/fast && gmake: Warning: File `Makefile' has modification time 37 s in the future
+/usr/bin/gmake -f CMakeFiles/cmTC_7d4f2.dir/build.make CMakeFiles/cmTC_7d4f2.dir/build
+gmake[1]: Entering directory `/home/tomg/Desktop/detectable_flat_combining-Stack/dfc/CMakeFiles/CMakeTmp'
+gmake[1]: Warning: File `CMakeFiles/cmTC_7d4f2.dir/flags.make' has modification time 37 s in the future
+Building CXX object CMakeFiles/cmTC_7d4f2.dir/CMakeCXXCompilerABI.cpp.o
+/opt/sw/gcc/9.1.0/bin/c++    -v -o CMakeFiles/cmTC_7d4f2.dir/CMakeCXXCompilerABI.cpp.o -c /opt/sw/cmake/3.15.3/share/cmake-3.15/Modules/CMakeCXXCompilerABI.cpp
+Using built-in specs.
+COLLECT_GCC=/opt/sw/gcc/9.1.0/bin/c++
+OFFLOAD_TARGET_NAMES=nvptx-none
+Target: x86_64-pc-linux-gnu
+Configured with: ../gcc-9.1.0/configure --enable-offload-targets=nvptx-none --with-cuda-driver-include=/usr/local/cuda-10.0/include --with-cuda-driver-lib=/usr/local/cuda-10.0/lib64 --disable-bootstrap --disable-multilib --enable-languages=c,c++,fortran,lto --prefix=/opt/sw/gcc/9.1.0
+Thread model: posix
+gcc version 9.1.0 (GCC) 
+COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_7d4f2.dir/CMakeCXXCompilerABI.cpp.o' '-c' '-shared-libgcc' '-mtune=generic' '-march=x86-64'
+ /opt/sw/gcc/9.1.0/libexec/gcc/x86_64-pc-linux-gnu/9.1.0/cc1plus -quiet -v -D_GNU_SOURCE /opt/sw/cmake/3.15.3/share/cmake-3.15/Modules/CMakeCXXCompilerABI.cpp -quiet -dumpbase CMakeCXXCompilerABI.cpp -mtune=generic -march=x86-64 -auxbase-strip CMakeFiles/cmTC_7d4f2.dir/CMakeCXXCompilerABI.cpp.o -version -o /tmp/cc4BtlfD.s
+GNU C++14 (GCC) version 9.1.0 (x86_64-pc-linux-gnu)
+	compiled by GNU C version 5.4.0, GMP version 6.0.0, MPFR version 3.1.1, MPC version 1.0.1, isl version none
+GGC heuristics: --param ggc-min-expand=100 --param ggc-min-heapsize=131072
+ignoring nonexistent directory "/opt/sw/gcc/9.1.0/lib/gcc/x86_64-pc-linux-gnu/9.1.0/../../../../x86_64-pc-linux-gnu/include"
+#include "..." search starts here:
+#include <...> search starts here:
+ /opt/sw/gcc/9.1.0/lib/gcc/x86_64-pc-linux-gnu/9.1.0/../../../../include/c++/9.1.0
+ /opt/sw/gcc/9.1.0/lib/gcc/x86_64-pc-linux-gnu/9.1.0/../../../../include/c++/9.1.0/x86_64-pc-linux-gnu
+ /opt/sw/gcc/9.1.0/lib/gcc/x86_64-pc-linux-gnu/9.1.0/../../../../include/c++/9.1.0/backward
+ /opt/sw/gcc/9.1.0/lib/gcc/x86_64-pc-linux-gnu/9.1.0/include
+ /usr/local/include
+ /opt/sw/gcc/9.1.0/include
+ /opt/sw/gcc/9.1.0/lib/gcc/x86_64-pc-linux-gnu/9.1.0/include-fixed
+ /usr/include
+End of search list.
+GNU C++14 (GCC) version 9.1.0 (x86_64-pc-linux-gnu)
+	compiled by GNU C version 5.4.0, GMP version 6.0.0, MPFR version 3.1.1, MPC version 1.0.1, isl version none
+GGC heuristics: --param ggc-min-expand=100 --param ggc-min-heapsize=131072
+Compiler executable checksum: 5ec7867492a2ebd023ed5408fa24608a
+COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_7d4f2.dir/CMakeCXXCompilerABI.cpp.o' '-c' '-shared-libgcc' '-mtune=generic' '-march=x86-64'
+ as -v --64 -o CMakeFiles/cmTC_7d4f2.dir/CMakeCXXCompilerABI.cpp.o /tmp/cc4BtlfD.s
+GNU assembler version 2.27 (x86_64-redhat-linux) using BFD version version 2.27-44.base.el7
+COMPILER_PATH=/opt/sw/gcc/9.1.0/libexec/gcc/x86_64-pc-linux-gnu/9.1.0/:/opt/sw/gcc/9.1.0/libexec/gcc/x86_64-pc-linux-gnu/9.1.0/:/opt/sw/gcc/9.1.0/libexec/gcc/x86_64-pc-linux-gnu/:/opt/sw/gcc/9.1.0/lib/gcc/x86_64-pc-linux-gnu/9.1.0/:/opt/sw/gcc/9.1.0/lib/gcc/x86_64-pc-linux-gnu/
+LIBRARY_PATH=/opt/sw/gcc/9.1.0/lib/gcc/x86_64-pc-linux-gnu/9.1.0/:/opt/sw/gcc/9.1.0/lib/gcc/x86_64-pc-linux-gnu/9.1.0/../../../../lib64/:/lib/../lib64/:/usr/lib/../lib64/:/opt/sw/gcc/9.1.0/lib/gcc/x86_64-pc-linux-gnu/9.1.0/../../../:/lib/:/usr/lib/
+COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_7d4f2.dir/CMakeCXXCompilerABI.cpp.o' '-c' '-shared-libgcc' '-mtune=generic' '-march=x86-64'
+Linking CXX executable cmTC_7d4f2
+/opt/sw/cmake/3.15.3/bin/cmake -E cmake_link_script CMakeFiles/cmTC_7d4f2.dir/link.txt --verbose=1
+/opt/sw/gcc/9.1.0/bin/c++      -v -rdynamic CMakeFiles/cmTC_7d4f2.dir/CMakeCXXCompilerABI.cpp.o  -o cmTC_7d4f2 
+Using built-in specs.
+COLLECT_GCC=/opt/sw/gcc/9.1.0/bin/c++
+COLLECT_LTO_WRAPPER=/opt/sw/gcc/9.1.0/libexec/gcc/x86_64-pc-linux-gnu/9.1.0/lto-wrapper
+OFFLOAD_TARGET_NAMES=nvptx-none
+Target: x86_64-pc-linux-gnu
+Configured with: ../gcc-9.1.0/configure --enable-offload-targets=nvptx-none --with-cuda-driver-include=/usr/local/cuda-10.0/include --with-cuda-driver-lib=/usr/local/cuda-10.0/lib64 --disable-bootstrap --disable-multilib --enable-languages=c,c++,fortran,lto --prefix=/opt/sw/gcc/9.1.0
+Thread model: posix
+gcc version 9.1.0 (GCC) 
+COMPILER_PATH=/opt/sw/gcc/9.1.0/libexec/gcc/x86_64-pc-linux-gnu/9.1.0/:/opt/sw/gcc/9.1.0/libexec/gcc/x86_64-pc-linux-gnu/9.1.0/:/opt/sw/gcc/9.1.0/libexec/gcc/x86_64-pc-linux-gnu/:/opt/sw/gcc/9.1.0/lib/gcc/x86_64-pc-linux-gnu/9.1.0/:/opt/sw/gcc/9.1.0/lib/gcc/x86_64-pc-linux-gnu/
+LIBRARY_PATH=/opt/sw/gcc/9.1.0/lib/gcc/x86_64-pc-linux-gnu/9.1.0/:/opt/sw/gcc/9.1.0/lib/gcc/x86_64-pc-linux-gnu/9.1.0/../../../../lib64/:/lib/../lib64/:/usr/lib/../lib64/:/opt/sw/gcc/9.1.0/lib/gcc/x86_64-pc-linux-gnu/9.1.0/../../../:/lib/:/usr/lib/
+COLLECT_GCC_OPTIONS='-v' '-rdynamic' '-o' 'cmTC_7d4f2' '-shared-libgcc' '-mtune=generic' '-march=x86-64'
+ /opt/sw/gcc/9.1.0/libexec/gcc/x86_64-pc-linux-gnu/9.1.0/collect2 -plugin /opt/sw/gcc/9.1.0/libexec/gcc/x86_64-pc-linux-gnu/9.1.0/liblto_plugin.so -plugin-opt=/opt/sw/gcc/9.1.0/libexec/gcc/x86_64-pc-linux-gnu/9.1.0/lto-wrapper -plugin-opt=-fresolution=/tmp/cc4nFZAH.res -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc --eh-frame-hdr -m elf_x86_64 -export-dynamic -dynamic-linker /lib64/ld-linux-x86-64.so.2 -o cmTC_7d4f2 /lib/../lib64/crt1.o /lib/../lib64/crti.o /opt/sw/gcc/9.1.0/lib/gcc/x86_64-pc-linux-gnu/9.1.0/crtbegin.o -L/opt/sw/gcc/9.1.0/lib/gcc/x86_64-pc-linux-gnu/9.1.0 -L/opt/sw/gcc/9.1.0/lib/gcc/x86_64-pc-linux-gnu/9.1.0/../../../../lib64 -L/lib/../lib64 -L/usr/lib/../lib64 -L/opt/sw/gcc/9.1.0/lib/gcc/x86_64-pc-linux-gnu/9.1.0/../../.. CMakeFiles/cmTC_7d4f2.dir/CMakeCXXCompilerABI.cpp.o -lstdc++ -lm -lgcc_s -lgcc -lc -lgcc_s -lgcc /opt/sw/gcc/9.1.0/lib/gcc/x86_64-pc-linux-gnu/9.1.0/crtend.o /lib/../lib64/crtn.o
+COLLECT_GCC_OPTIONS='-v' '-rdynamic' '-o' 'cmTC_7d4f2' '-shared-libgcc' '-mtune=generic' '-march=x86-64'
+gmake[1]: warning:  Clock skew detected.  Your build may be incomplete.
+gmake[1]: Leaving directory `/home/tomg/Desktop/detectable_flat_combining-Stack/dfc/CMakeFiles/CMakeTmp'
+gmake: warning:  Clock skew detected.  Your build may be incomplete.
+
+
+
+Parsed CXX implicit include dir info from above output: rv=done
+  found start of include info
+  found start of implicit include info
+    add: [/opt/sw/gcc/9.1.0/lib/gcc/x86_64-pc-linux-gnu/9.1.0/../../../../include/c++/9.1.0]
+    add: [/opt/sw/gcc/9.1.0/lib/gcc/x86_64-pc-linux-gnu/9.1.0/../../../../include/c++/9.1.0/x86_64-pc-linux-gnu]
+    add: [/opt/sw/gcc/9.1.0/lib/gcc/x86_64-pc-linux-gnu/9.1.0/../../../../include/c++/9.1.0/backward]
+    add: [/opt/sw/gcc/9.1.0/lib/gcc/x86_64-pc-linux-gnu/9.1.0/include]
+    add: [/usr/local/include]
+    add: [/opt/sw/gcc/9.1.0/include]
+    add: [/opt/sw/gcc/9.1.0/lib/gcc/x86_64-pc-linux-gnu/9.1.0/include-fixed]
+    add: [/usr/include]
+  end of search list found
+  collapse include dir [/opt/sw/gcc/9.1.0/lib/gcc/x86_64-pc-linux-gnu/9.1.0/../../../../include/c++/9.1.0] ==> [/opt/sw/gcc/9.1.0/include/c++/9.1.0]
+  collapse include dir [/opt/sw/gcc/9.1.0/lib/gcc/x86_64-pc-linux-gnu/9.1.0/../../../../include/c++/9.1.0/x86_64-pc-linux-gnu] ==> [/opt/sw/gcc/9.1.0/include/c++/9.1.0/x86_64-pc-linux-gnu]
+  collapse include dir [/opt/sw/gcc/9.1.0/lib/gcc/x86_64-pc-linux-gnu/9.1.0/../../../../include/c++/9.1.0/backward] ==> [/opt/sw/gcc/9.1.0/include/c++/9.1.0/backward]
+  collapse include dir [/opt/sw/gcc/9.1.0/lib/gcc/x86_64-pc-linux-gnu/9.1.0/include] ==> [/opt/sw/gcc/9.1.0/lib/gcc/x86_64-pc-linux-gnu/9.1.0/include]
+  collapse include dir [/usr/local/include] ==> [/usr/local/include]
+  collapse include dir [/opt/sw/gcc/9.1.0/include] ==> [/opt/sw/gcc/9.1.0/include]
+  collapse include dir [/opt/sw/gcc/9.1.0/lib/gcc/x86_64-pc-linux-gnu/9.1.0/include-fixed] ==> [/opt/sw/gcc/9.1.0/lib/gcc/x86_64-pc-linux-gnu/9.1.0/include-fixed]
+  collapse include dir [/usr/include] ==> [/usr/include]
+  implicit include dirs: [/opt/sw/gcc/9.1.0/include/c++/9.1.0;/opt/sw/gcc/9.1.0/include/c++/9.1.0/x86_64-pc-linux-gnu;/opt/sw/gcc/9.1.0/include/c++/9.1.0/backward;/opt/sw/gcc/9.1.0/lib/gcc/x86_64-pc-linux-gnu/9.1.0/include;/usr/local/include;/opt/sw/gcc/9.1.0/include;/opt/sw/gcc/9.1.0/lib/gcc/x86_64-pc-linux-gnu/9.1.0/include-fixed;/usr/include]
+
+
+Parsed CXX implicit link information from above output:
+  link line regex: [^( *|.*[/\])(ld|CMAKE_LINK_STARTFILE-NOTFOUND|([^/\]+-)?ld|collect2)[^/\]*( |$)]
+  ignore line: [Change Dir: /home/tomg/Desktop/detectable_flat_combining-Stack/dfc/CMakeFiles/CMakeTmp]
+  ignore line: []
+  ignore line: [Run Build Command(s):/usr/bin/gmake cmTC_7d4f2/fast && gmake: Warning: File `Makefile' has modification time 37 s in the future]
+  ignore line: [/usr/bin/gmake -f CMakeFiles/cmTC_7d4f2.dir/build.make CMakeFiles/cmTC_7d4f2.dir/build]
+  ignore line: [gmake[1]: Entering directory `/home/tomg/Desktop/detectable_flat_combining-Stack/dfc/CMakeFiles/CMakeTmp']
+  ignore line: [gmake[1]: Warning: File `CMakeFiles/cmTC_7d4f2.dir/flags.make' has modification time 37 s in the future]
+  ignore line: [Building CXX object CMakeFiles/cmTC_7d4f2.dir/CMakeCXXCompilerABI.cpp.o]
+  ignore line: [/opt/sw/gcc/9.1.0/bin/c++    -v -o CMakeFiles/cmTC_7d4f2.dir/CMakeCXXCompilerABI.cpp.o -c /opt/sw/cmake/3.15.3/share/cmake-3.15/Modules/CMakeCXXCompilerABI.cpp]
+  ignore line: [Using built-in specs.]
+  ignore line: [COLLECT_GCC=/opt/sw/gcc/9.1.0/bin/c++]
+  ignore line: [OFFLOAD_TARGET_NAMES=nvptx-none]
+  ignore line: [Target: x86_64-pc-linux-gnu]
+  ignore line: [Configured with: ../gcc-9.1.0/configure --enable-offload-targets=nvptx-none --with-cuda-driver-include=/usr/local/cuda-10.0/include --with-cuda-driver-lib=/usr/local/cuda-10.0/lib64 --disable-bootstrap --disable-multilib --enable-languages=c,c++,fortran,lto --prefix=/opt/sw/gcc/9.1.0]
+  ignore line: [Thread model: posix]
+  ignore line: [gcc version 9.1.0 (GCC) ]
+  ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_7d4f2.dir/CMakeCXXCompilerABI.cpp.o' '-c' '-shared-libgcc' '-mtune=generic' '-march=x86-64']
+  ignore line: [ /opt/sw/gcc/9.1.0/libexec/gcc/x86_64-pc-linux-gnu/9.1.0/cc1plus -quiet -v -D_GNU_SOURCE /opt/sw/cmake/3.15.3/share/cmake-3.15/Modules/CMakeCXXCompilerABI.cpp -quiet -dumpbase CMakeCXXCompilerABI.cpp -mtune=generic -march=x86-64 -auxbase-strip CMakeFiles/cmTC_7d4f2.dir/CMakeCXXCompilerABI.cpp.o -version -o /tmp/cc4BtlfD.s]
+  ignore line: [GNU C++14 (GCC) version 9.1.0 (x86_64-pc-linux-gnu)]
+  ignore line: [	compiled by GNU C version 5.4.0, GMP version 6.0.0, MPFR version 3.1.1, MPC version 1.0.1, isl version none]
+  ignore line: [GGC heuristics: --param ggc-min-expand=100 --param ggc-min-heapsize=131072]
+  ignore line: [ignoring nonexistent directory "/opt/sw/gcc/9.1.0/lib/gcc/x86_64-pc-linux-gnu/9.1.0/../../../../x86_64-pc-linux-gnu/include"]
+  ignore line: [#include "..." search starts here:]
+  ignore line: [#include <...> search starts here:]
+  ignore line: [ /opt/sw/gcc/9.1.0/lib/gcc/x86_64-pc-linux-gnu/9.1.0/../../../../include/c++/9.1.0]
+  ignore line: [ /opt/sw/gcc/9.1.0/lib/gcc/x86_64-pc-linux-gnu/9.1.0/../../../../include/c++/9.1.0/x86_64-pc-linux-gnu]
+  ignore line: [ /opt/sw/gcc/9.1.0/lib/gcc/x86_64-pc-linux-gnu/9.1.0/../../../../include/c++/9.1.0/backward]
+  ignore line: [ /opt/sw/gcc/9.1.0/lib/gcc/x86_64-pc-linux-gnu/9.1.0/include]
+  ignore line: [ /usr/local/include]
+  ignore line: [ /opt/sw/gcc/9.1.0/include]
+  ignore line: [ /opt/sw/gcc/9.1.0/lib/gcc/x86_64-pc-linux-gnu/9.1.0/include-fixed]
+  ignore line: [ /usr/include]
+  ignore line: [End of search list.]
+  ignore line: [GNU C++14 (GCC) version 9.1.0 (x86_64-pc-linux-gnu)]
+  ignore line: [	compiled by GNU C version 5.4.0, GMP version 6.0.0, MPFR version 3.1.1, MPC version 1.0.1, isl version none]
+  ignore line: [GGC heuristics: --param ggc-min-expand=100 --param ggc-min-heapsize=131072]
+  ignore line: [Compiler executable checksum: 5ec7867492a2ebd023ed5408fa24608a]
+  ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_7d4f2.dir/CMakeCXXCompilerABI.cpp.o' '-c' '-shared-libgcc' '-mtune=generic' '-march=x86-64']
+  ignore line: [ as -v --64 -o CMakeFiles/cmTC_7d4f2.dir/CMakeCXXCompilerABI.cpp.o /tmp/cc4BtlfD.s]
+  ignore line: [GNU assembler version 2.27 (x86_64-redhat-linux) using BFD version version 2.27-44.base.el7]
+  ignore line: [COMPILER_PATH=/opt/sw/gcc/9.1.0/libexec/gcc/x86_64-pc-linux-gnu/9.1.0/:/opt/sw/gcc/9.1.0/libexec/gcc/x86_64-pc-linux-gnu/9.1.0/:/opt/sw/gcc/9.1.0/libexec/gcc/x86_64-pc-linux-gnu/:/opt/sw/gcc/9.1.0/lib/gcc/x86_64-pc-linux-gnu/9.1.0/:/opt/sw/gcc/9.1.0/lib/gcc/x86_64-pc-linux-gnu/]
+  ignore line: [LIBRARY_PATH=/opt/sw/gcc/9.1.0/lib/gcc/x86_64-pc-linux-gnu/9.1.0/:/opt/sw/gcc/9.1.0/lib/gcc/x86_64-pc-linux-gnu/9.1.0/../../../../lib64/:/lib/../lib64/:/usr/lib/../lib64/:/opt/sw/gcc/9.1.0/lib/gcc/x86_64-pc-linux-gnu/9.1.0/../../../:/lib/:/usr/lib/]
+  ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_7d4f2.dir/CMakeCXXCompilerABI.cpp.o' '-c' '-shared-libgcc' '-mtune=generic' '-march=x86-64']
+  ignore line: [Linking CXX executable cmTC_7d4f2]
+  ignore line: [/opt/sw/cmake/3.15.3/bin/cmake -E cmake_link_script CMakeFiles/cmTC_7d4f2.dir/link.txt --verbose=1]
+  ignore line: [/opt/sw/gcc/9.1.0/bin/c++      -v -rdynamic CMakeFiles/cmTC_7d4f2.dir/CMakeCXXCompilerABI.cpp.o  -o cmTC_7d4f2 ]
+  ignore line: [Using built-in specs.]
+  ignore line: [COLLECT_GCC=/opt/sw/gcc/9.1.0/bin/c++]
+  ignore line: [COLLECT_LTO_WRAPPER=/opt/sw/gcc/9.1.0/libexec/gcc/x86_64-pc-linux-gnu/9.1.0/lto-wrapper]
+  ignore line: [OFFLOAD_TARGET_NAMES=nvptx-none]
+  ignore line: [Target: x86_64-pc-linux-gnu]
+  ignore line: [Configured with: ../gcc-9.1.0/configure --enable-offload-targets=nvptx-none --with-cuda-driver-include=/usr/local/cuda-10.0/include --with-cuda-driver-lib=/usr/local/cuda-10.0/lib64 --disable-bootstrap --disable-multilib --enable-languages=c,c++,fortran,lto --prefix=/opt/sw/gcc/9.1.0]
+  ignore line: [Thread model: posix]
+  ignore line: [gcc version 9.1.0 (GCC) ]
+  ignore line: [COMPILER_PATH=/opt/sw/gcc/9.1.0/libexec/gcc/x86_64-pc-linux-gnu/9.1.0/:/opt/sw/gcc/9.1.0/libexec/gcc/x86_64-pc-linux-gnu/9.1.0/:/opt/sw/gcc/9.1.0/libexec/gcc/x86_64-pc-linux-gnu/:/opt/sw/gcc/9.1.0/lib/gcc/x86_64-pc-linux-gnu/9.1.0/:/opt/sw/gcc/9.1.0/lib/gcc/x86_64-pc-linux-gnu/]
+  ignore line: [LIBRARY_PATH=/opt/sw/gcc/9.1.0/lib/gcc/x86_64-pc-linux-gnu/9.1.0/:/opt/sw/gcc/9.1.0/lib/gcc/x86_64-pc-linux-gnu/9.1.0/../../../../lib64/:/lib/../lib64/:/usr/lib/../lib64/:/opt/sw/gcc/9.1.0/lib/gcc/x86_64-pc-linux-gnu/9.1.0/../../../:/lib/:/usr/lib/]
+  ignore line: [COLLECT_GCC_OPTIONS='-v' '-rdynamic' '-o' 'cmTC_7d4f2' '-shared-libgcc' '-mtune=generic' '-march=x86-64']
+  link line: [ /opt/sw/gcc/9.1.0/libexec/gcc/x86_64-pc-linux-gnu/9.1.0/collect2 -plugin /opt/sw/gcc/9.1.0/libexec/gcc/x86_64-pc-linux-gnu/9.1.0/liblto_plugin.so -plugin-opt=/opt/sw/gcc/9.1.0/libexec/gcc/x86_64-pc-linux-gnu/9.1.0/lto-wrapper -plugin-opt=-fresolution=/tmp/cc4nFZAH.res -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc --eh-frame-hdr -m elf_x86_64 -export-dynamic -dynamic-linker /lib64/ld-linux-x86-64.so.2 -o cmTC_7d4f2 /lib/../lib64/crt1.o /lib/../lib64/crti.o /opt/sw/gcc/9.1.0/lib/gcc/x86_64-pc-linux-gnu/9.1.0/crtbegin.o -L/opt/sw/gcc/9.1.0/lib/gcc/x86_64-pc-linux-gnu/9.1.0 -L/opt/sw/gcc/9.1.0/lib/gcc/x86_64-pc-linux-gnu/9.1.0/../../../../lib64 -L/lib/../lib64 -L/usr/lib/../lib64 -L/opt/sw/gcc/9.1.0/lib/gcc/x86_64-pc-linux-gnu/9.1.0/../../.. CMakeFiles/cmTC_7d4f2.dir/CMakeCXXCompilerABI.cpp.o -lstdc++ -lm -lgcc_s -lgcc -lc -lgcc_s -lgcc /opt/sw/gcc/9.1.0/lib/gcc/x86_64-pc-linux-gnu/9.1.0/crtend.o /lib/../lib64/crtn.o]
+    arg [/opt/sw/gcc/9.1.0/libexec/gcc/x86_64-pc-linux-gnu/9.1.0/collect2] ==> ignore
+    arg [-plugin] ==> ignore
+    arg [/opt/sw/gcc/9.1.0/libexec/gcc/x86_64-pc-linux-gnu/9.1.0/liblto_plugin.so] ==> ignore
+    arg [-plugin-opt=/opt/sw/gcc/9.1.0/libexec/gcc/x86_64-pc-linux-gnu/9.1.0/lto-wrapper] ==> ignore
+    arg [-plugin-opt=-fresolution=/tmp/cc4nFZAH.res] ==> ignore
+    arg [-plugin-opt=-pass-through=-lgcc_s] ==> ignore
+    arg [-plugin-opt=-pass-through=-lgcc] ==> ignore
+    arg [-plugin-opt=-pass-through=-lc] ==> ignore
+    arg [-plugin-opt=-pass-through=-lgcc_s] ==> ignore
+    arg [-plugin-opt=-pass-through=-lgcc] ==> ignore
+    arg [--eh-frame-hdr] ==> ignore
+    arg [-m] ==> ignore
+    arg [elf_x86_64] ==> ignore
+    arg [-export-dynamic] ==> ignore
+    arg [-dynamic-linker] ==> ignore
+    arg [/lib64/ld-linux-x86-64.so.2] ==> ignore
+    arg [-o] ==> ignore
+    arg [cmTC_7d4f2] ==> ignore
+    arg [/lib/../lib64/crt1.o] ==> ignore
+    arg [/lib/../lib64/crti.o] ==> ignore
+    arg [/opt/sw/gcc/9.1.0/lib/gcc/x86_64-pc-linux-gnu/9.1.0/crtbegin.o] ==> ignore
+    arg [-L/opt/sw/gcc/9.1.0/lib/gcc/x86_64-pc-linux-gnu/9.1.0] ==> dir [/opt/sw/gcc/9.1.0/lib/gcc/x86_64-pc-linux-gnu/9.1.0]
+    arg [-L/opt/sw/gcc/9.1.0/lib/gcc/x86_64-pc-linux-gnu/9.1.0/../../../../lib64] ==> dir [/opt/sw/gcc/9.1.0/lib/gcc/x86_64-pc-linux-gnu/9.1.0/../../../../lib64]
+    arg [-L/lib/../lib64] ==> dir [/lib/../lib64]
+    arg [-L/usr/lib/../lib64] ==> dir [/usr/lib/../lib64]
+    arg [-L/opt/sw/gcc/9.1.0/lib/gcc/x86_64-pc-linux-gnu/9.1.0/../../..] ==> dir [/opt/sw/gcc/9.1.0/lib/gcc/x86_64-pc-linux-gnu/9.1.0/../../..]
+    arg [CMakeFiles/cmTC_7d4f2.dir/CMakeCXXCompilerABI.cpp.o] ==> ignore
+    arg [-lstdc++] ==> lib [stdc++]
+    arg [-lm] ==> lib [m]
+    arg [-lgcc_s] ==> lib [gcc_s]
+    arg [-lgcc] ==> lib [gcc]
+    arg [-lc] ==> lib [c]
+    arg [-lgcc_s] ==> lib [gcc_s]
+    arg [-lgcc] ==> lib [gcc]
+    arg [/opt/sw/gcc/9.1.0/lib/gcc/x86_64-pc-linux-gnu/9.1.0/crtend.o] ==> ignore
+    arg [/lib/../lib64/crtn.o] ==> ignore
+  collapse library dir [/opt/sw/gcc/9.1.0/lib/gcc/x86_64-pc-linux-gnu/9.1.0] ==> [/opt/sw/gcc/9.1.0/lib/gcc/x86_64-pc-linux-gnu/9.1.0]
+  collapse library dir [/opt/sw/gcc/9.1.0/lib/gcc/x86_64-pc-linux-gnu/9.1.0/../../../../lib64] ==> [/opt/sw/gcc/9.1.0/lib64]
+  collapse library dir [/lib/../lib64] ==> [/lib64]
+  collapse library dir [/usr/lib/../lib64] ==> [/usr/lib64]
+  collapse library dir [/opt/sw/gcc/9.1.0/lib/gcc/x86_64-pc-linux-gnu/9.1.0/../../..] ==> [/opt/sw/gcc/9.1.0/lib]
+  implicit libs: [stdc++;m;gcc_s;gcc;c;gcc_s;gcc]
+  implicit dirs: [/opt/sw/gcc/9.1.0/lib/gcc/x86_64-pc-linux-gnu/9.1.0;/opt/sw/gcc/9.1.0/lib64;/lib64;/usr/lib64;/opt/sw/gcc/9.1.0/lib]
+  implicit fwks: []
+
+
+Determining if the include file pthread.h exists passed with the following output:
+Change Dir: /home/tomg/Desktop/detectable_flat_combining-Stack/dfc/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/gmake cmTC_7d974/fast && gmake: Warning: File `Makefile' has modification time 37 s in the future
+/usr/bin/gmake -f CMakeFiles/cmTC_7d974.dir/build.make CMakeFiles/cmTC_7d974.dir/build
+gmake[1]: Entering directory `/home/tomg/Desktop/detectable_flat_combining-Stack/dfc/CMakeFiles/CMakeTmp'
+gmake[1]: Warning: File `CMakeFiles/cmTC_7d974.dir/flags.make' has modification time 37 s in the future
+Building CXX object CMakeFiles/cmTC_7d974.dir/CheckIncludeFile.cxx.o
+/opt/sw/gcc/9.1.0/bin/c++    -O2 -DPWB_IS_CLFLUSH    -o CMakeFiles/cmTC_7d974.dir/CheckIncludeFile.cxx.o -c /home/tomg/Desktop/detectable_flat_combining-Stack/dfc/CMakeFiles/CMakeTmp/CheckIncludeFile.cxx
+Linking CXX executable cmTC_7d974
+/opt/sw/cmake/3.15.3/bin/cmake -E cmake_link_script CMakeFiles/cmTC_7d974.dir/link.txt --verbose=1
+/opt/sw/gcc/9.1.0/bin/c++  -O2 -DPWB_IS_CLFLUSH     -rdynamic CMakeFiles/cmTC_7d974.dir/CheckIncludeFile.cxx.o  -o cmTC_7d974 
+gmake[1]: warning:  Clock skew detected.  Your build may be incomplete.
+gmake[1]: Leaving directory `/home/tomg/Desktop/detectable_flat_combining-Stack/dfc/CMakeFiles/CMakeTmp'
+gmake: warning:  Clock skew detected.  Your build may be incomplete.
+
+
+
+Determining if the function pthread_create exists in the pthread passed with the following output:
+Change Dir: /home/tomg/Desktop/detectable_flat_combining-Stack/dfc/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/gmake cmTC_84f82/fast && gmake: Warning: File `Makefile' has modification time 37 s in the future
+/usr/bin/gmake -f CMakeFiles/cmTC_84f82.dir/build.make CMakeFiles/cmTC_84f82.dir/build
+gmake[1]: Entering directory `/home/tomg/Desktop/detectable_flat_combining-Stack/dfc/CMakeFiles/CMakeTmp'
+gmake[1]: Warning: File `CMakeFiles/cmTC_84f82.dir/flags.make' has modification time 36 s in the future
+Building CXX object CMakeFiles/cmTC_84f82.dir/CheckFunctionExists.cxx.o
+/opt/sw/gcc/9.1.0/bin/c++    -O2 -DPWB_IS_CLFLUSH -DCHECK_FUNCTION_EXISTS=pthread_create   -o CMakeFiles/cmTC_84f82.dir/CheckFunctionExists.cxx.o -c /home/tomg/Desktop/detectable_flat_combining-Stack/dfc/CMakeFiles/CheckLibraryExists/CheckFunctionExists.cxx
+Linking CXX executable cmTC_84f82
+/opt/sw/cmake/3.15.3/bin/cmake -E cmake_link_script CMakeFiles/cmTC_84f82.dir/link.txt --verbose=1
+/opt/sw/gcc/9.1.0/bin/c++  -O2 -DPWB_IS_CLFLUSH -DCHECK_FUNCTION_EXISTS=pthread_create    -rdynamic CMakeFiles/cmTC_84f82.dir/CheckFunctionExists.cxx.o  -o cmTC_84f82 -lpthread 
+gmake[1]: warning:  Clock skew detected.  Your build may be incomplete.
+gmake[1]: Leaving directory `/home/tomg/Desktop/detectable_flat_combining-Stack/dfc/CMakeFiles/CMakeTmp'
+gmake: warning:  Clock skew detected.  Your build may be incomplete.
+
+
+
