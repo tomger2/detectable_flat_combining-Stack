@@ -323,35 +323,6 @@ void prepare_ops(persistent_ptr<detectable_fc> dfc, int & top_push, int & top_po
 }
 
 
-int reduce(persistent_ptr<detectable_fc> dfc) {
-	int top_push = -1;
-	int top_pop = -1;
-
-	prepare_ops(dfc, top_push, top_pop);
-
-	// IMPORTANT! make sure that there is no way that a combined op will change valid after it was collected.
-	// if there is a way, we must change below the collected op and not the other struct
-	while((top_push != -1) || (top_pop != -1)) {
-		if ((top_push != -1) && (top_pop != -1)) {
-			size_t cPush = pushList[top_push];
-			size_t cPop  = popList[top_pop];
-			short validOp = collectedValid[cPush];
-			ANN(dfc, cPush, validOp)->val = ACK;
-			size_t pushParam = ANN(dfc, cPush, validOp)->param;
-			ANN(dfc, cPop, collectedValid[cPop])->val = pushParam;
-
-			top_push --;
-			top_pop --;
-		}
-		else if (top_push != -1) {
-			return (top_push + 1);
-		}
-		else if (top_pop != -1){
-			return -1 * (top_pop + 1);
-		}
-	}
-	return 0; // empty list
-}
 
 void bin(uint64_t n) 
 { 
@@ -465,60 +436,60 @@ void update_pool_after_dealloc(uint64_t i) {
 
 
 void perform_pushes(persistent_ptr<detectable_fc> dfc, int top_index, persistent_ptr<node> & head){
-    top_index = top_index - 1;
-    do {
-        size_t cId = pushList[top_index];
+    int i = 0;
+    if(i <= top_index) {
+        do {
+            size_t cId = pushList[i];
 
-        int pos = find_free_node();
+            int pos = find_free_node();
 
-        auto newNode = dfc->nodes_pool[pos];
-        short validOp = collectedValid[cId];
-        size_t newParam = ANN(dfc, cId, validOp)->param;
-        newNode->param = newParam;
-        newNode->next = head;
+            auto newNode = dfc->nodes_pool[pos];
+            short validOp = collectedValid[cId];
+            size_t newParam = ANN(dfc, cId, validOp)->param;
+            newNode->param = newParam;
+            newNode->next = head;
 
-        update_pool_after_alloc(pos);
+            update_pool_after_alloc(pos);
 
-        ANN(dfc, cId, validOp)->val = ACK;
-        // pwbCounter3 ++;
-        PWB(&newNode);
-        head = newNode;
-        top_index -- ;
-    } while (top_index != -1);
+            ANN(dfc, cId, validOp)->val = ACK;
+            // pwbCounter3 ++;
+            PWB(&newNode);
+            head = newNode;
+            i++;
+        } while (i <= top_index);
+    }
 }
 
 void perform_pops(persistent_ptr<detectable_fc> dfc, int top_index, persistent_ptr<node> & head){
-    top_index = -1 * top_index - 1;
-    do {
-        size_t cId = popList[top_index];
-        if (head == NULL) {
-            ANN(dfc, cId, collectedValid[cId])->val = EMPTY;
-            // exit(-1);
-        }
-        else {
-            size_t headParam = head->param;
-            ANN(dfc, cId, collectedValid[cId])->val = headParam;
+    int i = 0;
+    if(i <= top_index) {
+        do {
+            size_t cId = popList[i];
+            if (head == NULL) {
+                ANN(dfc, cId, collectedValid[cId])->val = EMPTY;
+                // exit(-1);
+            } else {
+                size_t headParam = head->param;
+                ANN(dfc, cId, collectedValid[cId])->val = headParam;
 
-            update_pool_after_dealloc(head->index);
+                update_pool_after_dealloc(head->index);
 
-            head = head->next;
-        }
-        top_index -- ;
-    } while (top_index != -1);
+                head = head->next;
+            }
+            top_index--;
+        } while (i <= top_index);
+    }
 }
 
 size_t combine(persistent_ptr<detectable_fc> dfc, size_t opEpoch, pmem::obj::pool<root> pop, size_t pid) {
 	l_combining_counter ++;
-	int top_index = reduce(dfc);
+    int top_push = -1;
+    int top_pop = -1;
+
+    prepare_ops(dfc, top_push, top_pop);
 	persistent_ptr<node> head = dfc->top[(dfc->cEpoch/2)%2];
-	if (top_index != 0) {
-		if (top_index > 0) { // push
-			perform_pushes(dfc, top_index, head);
-		}
-		else { // pop. should convert to positive index
-            perform_pops(dfc, top_index, head);
-		}		
-	}
+    perform_pushes(dfc, top_push, head);
+    perform_pops(dfc, top_index, head);
 	dfc->top[(dfc->cEpoch/2 + 1) % 2] = head;
 	for (int i=0; i<NN; i++) { //maybe persist on line. check on optane
 		short validOp = collectedValid[i];
