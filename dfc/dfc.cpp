@@ -46,7 +46,7 @@ using namespace std::literals::chrono_literals;
 // Name of persistent file mapping
 #ifndef PM_FILE_NAME
 // #define PM_FILE_NAME   "/home/matanr/recov_flat_combining/poolfile"
-#define PM_FILE_NAME   "/dev/shm/dfc_shared"
+#define PM_FILE_NAME   "/mnt/pmem_emul/tomg_dir/dfc-stack"
 // #define PM_FILE_NAME   "/dev/dax4.0"
 // #define PM_FILE_NAME   "/mnt/dfcpmem/dfc_shared"
 #endif
@@ -686,6 +686,8 @@ std::tuple<uint64_t, double, double, double, double, double> pushPopTest(int num
 	for (int irun = 0; irun < numRuns; irun++) {
 		NN = numThreads;
 		
+		int sds_write_value = 0;
+		pmemobj_ctl_set(NULL, "sds.at_create", &sds_write_value);
 		pop = pool<root>::create(pool_file_name, "layout", (size_t)PM_REGION_SIZE, S_IRUSR|S_IWUSR);
 		proot = pop.root();
 		transaction_allocations(proot, pop);
